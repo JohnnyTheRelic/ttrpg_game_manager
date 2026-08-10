@@ -1,0 +1,10 @@
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\CMAKEFILES\3E9F344ED13EFB941286271E8CA08F2A\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/rjbur/projects/ttrpg -BC:/Users/rjbur/projects/ttrpg/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/rjbur/projects/ttrpg/build/ttrpg_rpc.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

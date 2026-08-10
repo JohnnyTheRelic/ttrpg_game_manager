@@ -1,0 +1,4 @@
+C:/Users/rjbur/projects/ttrpg/build/CMakeFiles/ttrpg_server.dir
+C:/Users/rjbur/projects/ttrpg/build/CMakeFiles/ttrpg_client.dir
+C:/Users/rjbur/projects/ttrpg/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/rjbur/projects/ttrpg/build/CMakeFiles/ZERO_CHECK.dir
