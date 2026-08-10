@@ -1,7 +1,0 @@
-[15:45:03] [INFO] Server started on port 12345
-[15:45:10] [INFO] Client connected from 127.0.0.1:58571
-[15:45:10] [INFO] User registered: jtr
-[15:45:12] [CHAT] jtr: lets go
-[15:45:15] [CHAT] jtr: logging enabled
-[15:45:17] [CHAT] jtr: hell yeah
-[15:45:20] [INFO] Client disconnected.
