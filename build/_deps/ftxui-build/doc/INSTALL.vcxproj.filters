@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\rjbur\projects\ttrpg\build\CMakeFiles\6cd8c9b581b7a763d613fb8d2ae6b838\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{3421FC5F-21F0-3AC5-96DF-06F398396CC0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

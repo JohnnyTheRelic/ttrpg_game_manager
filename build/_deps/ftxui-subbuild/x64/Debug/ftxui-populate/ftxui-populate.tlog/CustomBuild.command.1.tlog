@@ -1,0 +1,150 @@
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-UPDATE.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\F636AC2A02C452E9CCC478C374C1180B\FTXUI-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\6364267DA71A15829095139FC99CBEDE\FTXUI-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/CMakeFiles/Debug/ftxui-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\B21778F1EEF195E144B71CACEF234236\FTXUI-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\RJBUR\PROJECTS\TTRPG\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild -BC:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild --check-stamp-file C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

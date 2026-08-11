@@ -1,7 +1,10 @@
 {
 	"InstallScripts" : 
 	[
-		"C:/Users/rjbur/projects/ttrpg/build/cmake_install.cmake"
+		"C:/Users/rjbur/projects/ttrpg/build/cmake_install.cmake",
+		"C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-build/cmake_install.cmake",
+		"C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-build/examples/cmake_install.cmake",
+		"C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-build/doc/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
