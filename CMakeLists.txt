@@ -16,6 +16,7 @@ set(ASIO_INCLUDE_DIR
 add_executable(ttrpg_server
     src/server_main.cpp
     src/chat/ChatRoom.cpp
+    src/command/ServerCommandHandler.cpp
     src/network/Connection.cpp
     src/network/Message.cpp
     src/network/Server.cpp

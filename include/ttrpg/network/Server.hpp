@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ttrpg/chat/ChatRoom.hpp>
+#include <ttrpg/command/ServerCommandHandler.hpp>
 #include <ttrpg/util/Logger.hpp>
 
 #include <iostream>
@@ -14,6 +15,8 @@ namespace ttrpg::network {
         Server();
 
         void start();
+
+        void runConsole();
     private:
         void acceptConnection();
 
@@ -27,6 +30,8 @@ namespace ttrpg::network {
         std::vector<std::shared_ptr<class Connection>> connections;
 
         ttrpg::chat::ChatRoom chatRoom;
+        ttrpg::command::ServerCommandHandler commandHandler;
         ttrpg::util::Logger logger;
     };
 } 
+

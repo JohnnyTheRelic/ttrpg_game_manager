@@ -7,7 +7,7 @@
 #include <iostream>
 
 namespace ttrpg::network {
-    Server::Server() : acceptor(io, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), 12345)), logger() {}
+    Server::Server() : acceptor(io, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), 12345)), logger(), commandHandler(*this) {}
 
     void Server::start() {
         logger.info("Server started on port 12345");
@@ -15,7 +15,30 @@ namespace ttrpg::network {
         // Wait for a client to connect
         acceptConnection();
 
+        std::thread consoleThread([this]() {
+            runConsole();
+        });
+
         io.run();
+
+        consoleThread.join();
+    }
+
+    void Server::runConsole() {
+        std::string command;
+
+        while(true) {
+            std::cout << "> " << std::flush;
+            std::getline(std::cin >> std::ws, command);
+
+            if(command.empty()) {
+                continue;
+            }
+
+            if(!commandHandler.handle(command)) {
+                logger.warn("Unknown command: " + command);
+            }
+        }
     }
 
     void Server::acceptConnection() {

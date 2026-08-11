@@ -366,6 +366,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\server_main.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\chat\ChatRoom.cpp" />
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\command\ServerCommandHandler.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Connection.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Message.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Server.cpp" />

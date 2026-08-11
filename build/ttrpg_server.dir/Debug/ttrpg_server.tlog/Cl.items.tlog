@@ -1,5 +1,6 @@
 C:\Users\rjbur\projects\ttrpg\src\server_main.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\server_main.obj
 C:\Users\rjbur\projects\ttrpg\src\chat\ChatRoom.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\ChatRoom.obj
+C:\Users\rjbur\projects\ttrpg\src\command\ServerCommandHandler.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\ServerCommandHandler.obj
 C:\Users\rjbur\projects\ttrpg\src\network\Connection.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\Connection.obj
 C:\Users\rjbur\projects\ttrpg\src\network\Message.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\Message.obj
 C:\Users\rjbur\projects\ttrpg\src\network\Server.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_server.dir\Debug\Server.obj
