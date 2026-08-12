@@ -9,9 +9,23 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(ASIO_INCLUDE_DIR
-    "C:/Users/rjbur/Documents/asio-1.36.0/asio-1.36.0/include"
+include(FetchContent)
+
+FetchContent_Declare(
+    asio
+    GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
+    GIT_TAG asio-1-36-0
 )
+
+FetchContent_MakeAvailable(asio)
+
+FetchContent_Declare(
+    ftxui
+    GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
+    GIT_TAG main
+)
+
+FetchContent_MakeAvailable(ftxui)
 
 add_executable(ttrpg_server
     src/server_main.cpp
@@ -30,6 +44,8 @@ add_executable(ttrpg_client
     src/client_main.cpp
     src/network/Client.cpp
     src/network/Message.cpp
+    src/ui/client/ClientUI.cpp
+    src/ui/client/LoginScene.cpp
     src/user/User.cpp
     src/util/Time.cpp
 )
@@ -46,20 +62,9 @@ target_include_directories(ttrpg_client
         ${asio_SOURCE_DIR}/asio/include
 )
 
-include(FetchContent)
-
-FetchContent_Declare(
-    asio
-    GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
-    GIT_TAG asio-1-36-0
+target_link_libraries(ttrpg_client
+    PRIVATE
+        ftxui::screen
+        ftxui::dom
+        ftxui::component
 )
-
-FetchContent_MakeAvailable(asio)
-
-FetchContent_Declare(
-    ftxui
-    GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
-    GIT_TAG main
-)
-
-FetchContent_MakeAvailable(ftxui)

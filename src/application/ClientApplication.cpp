@@ -2,16 +2,22 @@
 
 #include <ttrpg/user/User.hpp>
 
+#include <functional>
+#include <utility>
 #include <thread>
 #include <iostream>
 #include <string>
 
 namespace ttrpg::application {
-    void ClientApplication::run() {
-        std::string username;
-        std::cout << "Enter your username (3-16 characters): ";
-        std::cin >> username;
+    ClientApplication::ClientApplication() : ui([this](const std::string& username) {
+        handleLogin(username);
+    }) {}
 
+    void ClientApplication::run() {
+        ui.run();
+    }
+
+    void ClientApplication::handleLogin(const std::string& username) {
         try {
             ttrpg::user::User user(username);
 
