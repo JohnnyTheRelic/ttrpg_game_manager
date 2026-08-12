@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <iostream>
 #include <asio.hpp>
 #include <array>
@@ -9,7 +10,9 @@
 namespace ttrpg::network {
     class Client {
     public:
-        Client();
+        using MessageCallback = std::function<void(const std::string&)>;
+
+        explicit Client(MessageCallback onMessage);
 
         void run();
         void connect();
@@ -21,5 +24,7 @@ namespace ttrpg::network {
         asio::io_context io;
         asio::ip::tcp::socket socket;
         std::array<char, 1024> buffer;
+
+        MessageCallback onMessage;
     };
 }

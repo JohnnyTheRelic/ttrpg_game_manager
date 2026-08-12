@@ -9,8 +9,12 @@
 #include <string>
 
 namespace ttrpg::application {
-    ClientApplication::ClientApplication() : ui([this](const std::string& username) {
+    ClientApplication::ClientApplication() : client([this](const std::string& message) {
+        ui.addChatMessage(message);
+    }), ui([this](const std::string& username) {
         handleLogin(username);
+    }, [this](const std::string& message) {
+        client.sendMessage(message);
     }) {}
 
     void ClientApplication::run() {
@@ -29,9 +33,9 @@ namespace ttrpg::application {
                 client.run(); // Run the io_context in a separate thread
             });
 
-            runChat(user);
+            ui.showChat();
 
-            networkThread.join(); // Wait for the network thread to finish
+            networkThread.detach(); // Wait for the network thread to finish
         } catch (const std::invalid_argument& exception) {
             std::cerr << "Invalid Username: " << exception.what() << std::endl;
         }

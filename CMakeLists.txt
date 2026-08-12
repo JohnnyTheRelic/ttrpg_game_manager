@@ -44,6 +44,7 @@ add_executable(ttrpg_client
     src/client_main.cpp
     src/network/Client.cpp
     src/network/Message.cpp
+    src/ui/client/ChatScene.cpp
     src/ui/client/ClientUI.cpp
     src/ui/client/LoginScene.cpp
     src/user/User.cpp

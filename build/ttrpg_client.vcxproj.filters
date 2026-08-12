@@ -13,6 +13,9 @@
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\ui\client\ChatScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\ui\client\ClientUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

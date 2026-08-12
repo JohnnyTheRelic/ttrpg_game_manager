@@ -1,10 +1,13 @@
 #include <ttrpg/network/Client.hpp>
 #include <ttrpg/network/Message.hpp>
 
+#include <utility>
 #include <iostream>
 
 namespace ttrpg::network {
-    Client::Client() : socket(io) {}
+    Client::Client(MessageCallback onMessage) : socket(io), onMessage(std::move(onMessage)) {
+
+    }
 
     void Client::run() {
         io.run();
@@ -62,7 +65,10 @@ namespace ttrpg::network {
         socket.async_read_some(asio::buffer(buffer), [this](const asio::error_code ec, std::size_t bytes_received) {
             if (!ec) {
                 std::string message(buffer.data(), bytes_received);
-                std::cout << message << std::endl;
+                
+                if(onMessage) {
+                    onMessage(message);
+                }
                 
                 // Continue receiving data
                 receiveMessages();

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <ttrpg/ui/client/LoginScene.hpp>
+#include <ttrpg/ui/client/ChatScene.hpp>
+
 #include <functional>
 #include <string>
 
@@ -9,24 +12,30 @@ namespace ttrpg::ui::client {
     class ClientUI {
     public:
         using LoginCallback = std::function<void(const std::string&)>;
+        using SendMessageCallback = std::function<void(const std::string&)>;
 
-        explicit ClientUI(LoginCallback onLogin);
+        explicit ClientUI(LoginCallback onLogin, SendMessageCallback onSendMessage);
 
         void run();
 
+        void showChat();
+
+        void addChatMessage(const std::string& message);
+
     private:
-        enum class Scene {
-            Login,
-            Chat
-        };
+        int currentScene = 0;
 
         void handleLogin(const std::string& username);
+        void handleSendMessage(const std::string& message);
 
-        std::string testString;
-
-        Scene currentScene = Scene::Login;
         LoginCallback onLogin;
+        SendMessageCallback onSendMessage;
+
         ftxui::ScreenInteractive screen;
-    
+        
+        std::unique_ptr<LoginScene> loginScene;
+        std::unique_ptr<ChatScene> chatScene;
+
+        ftxui::Component root;
     };
 }
