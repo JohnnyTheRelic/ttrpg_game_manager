@@ -4,6 +4,7 @@
 #include <ttrpg/command/ServerCommandHandler.hpp>
 #include <ttrpg/util/Logger.hpp>
 
+#include <functional>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -12,11 +13,13 @@
 namespace ttrpg::network {
     class Server {
     public:
-        Server();
+        using MessageCallback = std::function<void(const std::string&)>;
+
+        explicit Server(MessageCallback onMessage);
 
         void start();
 
-        void runConsole();
+        void sendCommand(const std::string& message);
     private:
         void acceptConnection();
 
@@ -27,11 +30,13 @@ namespace ttrpg::network {
         asio::io_context io;
         asio::ip::tcp::acceptor acceptor;
 
+        MessageCallback onMessage;
+
         std::vector<std::shared_ptr<class Connection>> connections;
 
         ttrpg::chat::ChatRoom chatRoom;
-        ttrpg::command::ServerCommandHandler commandHandler;
         ttrpg::util::Logger logger;
+        ttrpg::command::ServerCommandHandler commandHandler;
     };
 } 
 

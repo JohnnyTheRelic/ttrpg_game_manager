@@ -4,6 +4,9 @@
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\server_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\application\ServerApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\chat\ChatRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -17,6 +20,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\ui\server\ServerUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\user\User.cpp">

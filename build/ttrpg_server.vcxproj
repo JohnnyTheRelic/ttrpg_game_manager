@@ -87,12 +87,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-src/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
       <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <FloatingPointModel></FloatingPointModel>
       <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
@@ -111,10 +113,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -122,7 +124,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>_deps\ftxui-build\Debug\ftxui-screen.lib;_deps\ftxui-build\Debug\ftxui-dom.lib;_deps\ftxui-build\Debug\ftxui-component.lib;_deps\ftxui-build\Debug\ftxui-dom.lib;_deps\ftxui-build\Debug\ftxui-screen.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -142,11 +144,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-src/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
       <CallingConvention></CallingConvention>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <FloatingPointModel></FloatingPointModel>
       <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -167,10 +171,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -178,7 +182,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>_deps\ftxui-build\Release\ftxui-screen.lib;_deps\ftxui-build\Release\ftxui-dom.lib;_deps\ftxui-build\Release\ftxui-component.lib;_deps\ftxui-build\Release\ftxui-dom.lib;_deps\ftxui-build\Release\ftxui-screen.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -198,11 +202,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-src/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
       <CallingConvention></CallingConvention>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <FloatingPointModel></FloatingPointModel>
       <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -223,10 +229,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -234,7 +240,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>_deps\ftxui-build\MinSizeRel\ftxui-screen.lib;_deps\ftxui-build\MinSizeRel\ftxui-dom.lib;_deps\ftxui-build\MinSizeRel\ftxui-component.lib;_deps\ftxui-build\MinSizeRel\ftxui-dom.lib;_deps\ftxui-build\MinSizeRel\ftxui-screen.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -254,12 +260,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/rjbur/projects/ttrpg/build/_deps/ftxui-src/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
       <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <FloatingPointModel></FloatingPointModel>
       <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -278,10 +286,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rjbur\projects\ttrpg\include;C:\Users\rjbur\projects\ttrpg\build\_deps\asio-src\asio\include;C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -289,7 +297,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>_deps\ftxui-build\RelWithDebInfo\ftxui-screen.lib;_deps\ftxui-build\RelWithDebInfo\ftxui-dom.lib;_deps\ftxui-build\RelWithDebInfo\ftxui-component.lib;_deps\ftxui-build\RelWithDebInfo\ftxui-dom.lib;_deps\ftxui-build\RelWithDebInfo\ftxui-screen.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -365,11 +373,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\server_main.cpp" />
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\application\ServerApplication.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\chat\ChatRoom.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\command\ServerCommandHandler.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Connection.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Message.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\network\Server.cpp" />
+    <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\ui\server\ServerUI.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\user\User.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\util\Logger.cpp" />
     <ClCompile Include="C:\Users\rjbur\projects\ttrpg\src\util\Time.cpp" />
@@ -381,6 +391,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build\component.vcxproj">
+      <Project>{01BE0250-BE45-331E-B0FA-7EB7432B1F46}</Project>
+      <Name>component</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build\dom.vcxproj">
+      <Project>{C850AFEE-153B-3008-946C-3304CA4376AF}</Project>
+      <Name>dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\rjbur\projects\ttrpg\build\_deps\ftxui-build\screen.vcxproj">
+      <Project>{93F3EFE3-F44A-3819-ABD0-6AB8CC142339}</Project>
+      <Name>screen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

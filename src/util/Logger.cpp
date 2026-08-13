@@ -6,7 +6,7 @@
 #include <fstream>
 
 namespace ttrpg::util {
-    Logger::Logger() {
+    Logger::Logger(LogCallback onLog) : onLog(std::move(onLog)) {
         std::filesystem::create_directories("logs");
         logFile.open("logs/" + ttrpg::util::currentDateTime() + ".log", std::ios::app);
 
@@ -16,37 +16,30 @@ namespace ttrpg::util {
     }
 
     void Logger::chat(const std::string& message) {
-        std::string logMessage = "[" + ttrpg::util::currentTime() + "] [CHAT] " + message;
-
-        std::cout << logMessage << std::endl;
-        logFile << logMessage << std::endl;
+        write("[" + ttrpg::util::currentTime() + "] [CHAT] " + message);
     }
 
     void Logger::info(const std::string& message) {
-        std::string logMessage = "[" + ttrpg::util::currentTime() + "] [INFO] " + message;
-
-        std::cout << logMessage << std::endl;
-        logFile << logMessage << std::endl;
+        write("[" + ttrpg::util::currentTime() + "] [INFO] " + message);
     }
 
     void Logger::warn(const std::string& message) {
-        std::string logMessage = "[" + ttrpg::util::currentTime() + "] [WARN] " + message;
-
-        std::cout << logMessage << std::endl;
-        logFile << logMessage << std::endl;
+        write("[" + ttrpg::util::currentTime() + "] [WARN] " + message);
     }
 
     void Logger::error(const std::string& message) {
-        std::string logMessage = "[" + ttrpg::util::currentTime() + "] [ERROR] " + message;
-
-        std::cerr << logMessage << std::endl;
-        logFile << logMessage << std::endl;
+        write("[" + ttrpg::util::currentTime() + "] [ERROR] " + message);
     }
 
     void Logger::debug(const std::string& message) {
-        std::string logMessage = "[" + ttrpg::util::currentTime() + "] [DEBUG] " + message;
+        write("[" + ttrpg::util::currentTime() + "] [DEBUG] " + message);
+    }
 
-        std::cout << logMessage << std::endl;
-        logFile << logMessage << std::endl;
+    void Logger::write(const std::string& message) {
+        if (onLog) {
+            onLog(message);
+        }
+
+        logFile << message << std::endl;
     }
 }

@@ -1,9 +1,9 @@
-#include <ttrpg/network/Server.hpp>
+#include <ttrpg/application/ServerApplication.hpp>
 
 int main() {
-    ttrpg::network::Server server;
+    ttrpg::application::ServerApplication app;
 
-    server.start();
+    app.run();
     
     return 0;
 }

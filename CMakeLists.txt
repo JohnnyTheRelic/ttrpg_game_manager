@@ -29,11 +29,13 @@ FetchContent_MakeAvailable(ftxui)
 
 add_executable(ttrpg_server
     src/server_main.cpp
+    src/application/ServerApplication.cpp
     src/chat/ChatRoom.cpp
     src/command/ServerCommandHandler.cpp
     src/network/Connection.cpp
     src/network/Message.cpp
     src/network/Server.cpp
+    src/ui/server/ServerUI.cpp
     src/user/User.cpp
     src/util/Logger.cpp
     src/util/Time.cpp
@@ -64,6 +66,13 @@ target_include_directories(ttrpg_client
 )
 
 target_link_libraries(ttrpg_client
+    PRIVATE
+        ftxui::screen
+        ftxui::dom
+        ftxui::component
+)
+
+target_link_libraries(ttrpg_server
     PRIVATE
         ftxui::screen
         ftxui::dom
