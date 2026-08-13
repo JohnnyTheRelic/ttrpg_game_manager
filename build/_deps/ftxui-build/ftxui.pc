@@ -1,9 +1,0 @@
-prefix="C:/Program Files (x86)/ttrpg_rpc"
-libdir="C:/Program Files (x86)/ttrpg_rpc/lib"
-includedir="C:/Program Files (x86)/ttrpg_rpc/include"
-
-Name: ftxui
-Description: 
-Version: 7.0.3
-Cflags: -I${includedir}
-Libs: -L${libdir} -lftxui-component -lftxui-dom -lftxui-screen

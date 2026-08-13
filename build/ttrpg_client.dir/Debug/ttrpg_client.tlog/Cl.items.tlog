@@ -1,9 +1,0 @@
-C:\Users\rjbur\projects\ttrpg\src\application\ClientApplication.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\ClientApplication.obj
-C:\Users\rjbur\projects\ttrpg\src\client_main.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\client_main.obj
-C:\Users\rjbur\projects\ttrpg\src\network\Client.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\Client.obj
-C:\Users\rjbur\projects\ttrpg\src\network\Message.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\Message.obj
-C:\Users\rjbur\projects\ttrpg\src\ui\client\ChatScene.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\ChatScene.obj
-C:\Users\rjbur\projects\ttrpg\src\ui\client\ClientUI.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\ClientUI.obj
-C:\Users\rjbur\projects\ttrpg\src\ui\client\LoginScene.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\LoginScene.obj
-C:\Users\rjbur\projects\ttrpg\src\user\User.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\User.obj
-C:\Users\rjbur\projects\ttrpg\src\util\Time.cpp;C:\Users\rjbur\projects\ttrpg\build\ttrpg_client.dir\Debug\Time.obj
