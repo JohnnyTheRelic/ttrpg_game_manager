@@ -19,6 +19,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(asio)
 
+#DEPRICATED
 FetchContent_Declare(
     ftxui
     GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
@@ -26,6 +27,13 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(ftxui)
+#END DEPRICATED
+
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 add_executable(ttrpg_server
     src/server_main.cpp
@@ -35,10 +43,27 @@ add_executable(ttrpg_server
     src/network/Connection.cpp
     src/network/Message.cpp
     src/network/Server.cpp
+
+    #DEPRICATED - FTXUI
     src/ui/server/ServerUI.cpp
+
     src/user/User.cpp
     src/util/Logger.cpp
     src/util/Time.cpp
+
+    include/ttrpg/application/ServerApplication.hpp
+    include/ttrpg/chat/ChatRoom.hpp
+    include/ttrpg/command/ServerCommandHandler.hpp
+    include/ttrpg/network/Connection.hpp
+    include/ttrpg/network/Message.hpp
+    include/ttrpg/network/Server.hpp
+
+    #DEPRICATED - FTXUI
+    include/ttrpg/ui/server/ServerUI.hpp
+
+    include/ttrpg/user/User.hpp
+    include/ttrpg/util/Logger.hpp
+    include/ttrpg/util/Time.hpp
 )
 
 add_executable(ttrpg_client
@@ -46,12 +71,34 @@ add_executable(ttrpg_client
     src/client_main.cpp
     src/network/Client.cpp
     src/network/Message.cpp
+
+    #DEPRICATED - FTXUI
     src/ui/client/ChatScene.cpp
     src/ui/client/ClientUI.cpp
     src/ui/client/LoginScene.cpp
+
     src/user/User.cpp
     src/util/Time.cpp
+    src/ui/client/client_window.cpp
+
+    include/ttrpg/application/ClientApplication.hpp
+    include/ttrpg/network/Client.hpp
+    include/ttrpg/network/Message.hpp
+
+    #DEPRICATED - FTXUI
+    include/ttrpg/ui/client/ChatScene.hpp
+    include/ttrpg/ui/client/ClientUI.hpp
+    include/ttrpg/ui/client/LoginScene.hpp
+
+    include/ttrpg/user/User.hpp
+    include/ttrpg/util/Time.hpp
+    include/ttrpg/ui/client/client_window.hpp
 )
+
+if (WIN32)
+    target_link_libraries(ttrpg_server PRIVATE ws2_32 mswsock)
+    target_link_libraries(ttrpg_client PRIVATE ws2_32 mswsock)
+endif()
 
 target_include_directories(ttrpg_server
     PRIVATE
@@ -65,15 +112,19 @@ target_include_directories(ttrpg_client
         ${asio_SOURCE_DIR}/asio/include
 )
 
+#DEPRICATED - FTXUI
 target_link_libraries(ttrpg_client
     PRIVATE
+        Qt6::Widgets
         ftxui::screen
         ftxui::dom
         ftxui::component
 )
 
+#DEPRICATED - FTXUI
 target_link_libraries(ttrpg_server
     PRIVATE
+        Qt6::Widgets
         ftxui::screen
         ftxui::dom
         ftxui::component

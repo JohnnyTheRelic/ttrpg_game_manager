@@ -1,11 +1,11 @@
-#include <iostream>
+#include <QApplication>
+#include "ttrpg/ui/client/client_window.hpp"
 
-#include <ttrpg/application/ClientApplication.hpp>
+int main(int argc, char* argv[]) {
+    QApplication app(argc, argv);
 
-int main() {
-    ttrpg::application::ClientApplication app;
+    ClientWindow window;
+    window.show();
 
-    app.run();
-
-    return 0;
+    return app.exec();
 }
