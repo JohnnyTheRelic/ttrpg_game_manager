@@ -35,6 +35,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS
+    ${CMAKE_SOURCE_DIR}/ui/client
+    ${CMAKE_SOURCE_DIR}/ui/server
+)
+
 add_executable(ttrpg_server
     src/server_main.cpp
     src/application/ServerApplication.cpp
@@ -93,6 +98,8 @@ add_executable(ttrpg_client
     include/ttrpg/user/User.hpp
     include/ttrpg/util/Time.hpp
     include/ttrpg/ui/client/client_window.hpp
+    ui/client/LoginWindow.ui
+    include/ttrpg/ui/client/LoginWindow.hpp src/ui/client/LoginWindow.cpp
 )
 
 if (WIN32)
