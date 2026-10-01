@@ -25,10 +25,30 @@ FetchContent_Declare(
     GIT_TAG v36.2
 )
 
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
 set(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(protobuf_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(protobuf)
+
+add_library(ttrpg_proto OBJECT proto/ttrpg.proto)
+
+target_link_libraries(ttrpg_proto
+    PUBLIC
+        protobuf::libprotobuf
+)
+
+target_include_directories(ttrpg_proto
+    PUBLIC
+        "${PROTO_BINARY_DIR}"
+)
+
+protobuf_generate(
+    TARGET ttrpg_proto
+    IMPORT_DIRS "${CMAKE_CURRENT_SOURCE_DIR"}/proto"
+    PROTOC_OUT_DIR "{PROTO_BINARY_DIR}"
+)
 
 #DEPRICATED
 FetchContent_Declare(
@@ -134,7 +154,7 @@ target_include_directories(ttrpg_client
 target_link_libraries(ttrpg_client
     PRIVATE
         Qt6::Widgets
-        protobuf::libprotobuf
+        ttrpg_proto
         ftxui::screen
         ftxui::dom
         ftxui::component
@@ -144,7 +164,7 @@ target_link_libraries(ttrpg_client
 target_link_libraries(ttrpg_server
     PRIVATE
         Qt6::Widgets
-        protobuf::libprotobuf
+        ttrpg_proto
         ftxui::screen
         ftxui::dom
         ftxui::component

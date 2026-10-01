@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-package ttrpg;
+package ttrpg.protocol;
 
 enum MessageType {
 	MESSAGE_TYPE_UNSPECIFIED = 0;
-	LOGIN = 1;
+	REGISTRATION = 1;
+	CHAT_MESSAGE = 2;
 }
 
 message Message {
 	MessageType type = 1;
-	string payload = 2;
+	string content = 2;
 }
