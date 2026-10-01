@@ -25,29 +25,36 @@ FetchContent_Declare(
     GIT_TAG v36.2
 )
 
-set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
-
-set(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(protobuf_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-
 FetchContent_MakeAvailable(protobuf)
 
-add_library(ttrpg_proto OBJECT proto/ttrpg.proto)
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
 
-target_link_libraries(ttrpg_proto
-    PUBLIC
-        protobuf::libprotobuf
+set(PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/proto/ttrpg.proto)")
+
+add_custom_command(
+    OUTPUT
+        "${PROTO_BINARY_DIR}/ttrpg.pb.cc"
+        "${PROTO_BINARY_DIR}/ttrpg.pb.h"
+    COMMAND protobuf::protoc
+        --proto_path="${CMAKE_CURRENT_SOURCE_DIR}/proto"
+        --cpp_out="${PROTO_BINARY_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/proto/ttrpg.proto"
+    DEPENDS
+        ${PROTO_FILES}
+        protobuf::protoc
+    COMMENT "Generating protobuf sources"
 )
+
+add_library(ttrpg_proto OBJECT "${PROTO_BINARY_DIR}/ttrpg.pb.cc")
 
 target_include_directories(ttrpg_proto
     PUBLIC
         "${PROTO_BINARY_DIR}"
 )
 
-protobuf_generate(
-    TARGET ttrpg_proto
-    IMPORT_DIRS "${CMAKE_CURRENT_SOURCE_DIR"}/proto"
-    PROTOC_OUT_DIR "{PROTO_BINARY_DIR}"
+target_link_libraries(ttrpg_proto
+    PUBLIC
+        protobuf::libprotobuf
 )
 
 #DEPRICATED
