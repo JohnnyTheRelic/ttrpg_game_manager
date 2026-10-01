@@ -1,26 +1,29 @@
 #pragma once
 
-#include <QApplication>
+#include <QObject>
 
 #include <ttrpg/network/Client.hpp>
-#include <ttrpg/ui/client/ClientUI.hpp>
+#include <ttrpg/ui/client/LoginWindow.hpp>
 #include <ttrpg/user/User.hpp>
 
 #include <thread>
 
 namespace ttrpg::application {
-    class ClientApplication : public QApplication {
+    class ClientApplication : public QObject {
         Q_OBJECT
     public:
         ClientApplication();
 
         void run();
+    signals:
+        //void registerUser(const QString& username);
+        void handleChatMessage(const QString& message);
     private slots:
         void handleLogin(const QString& username);
+        //void handleChatMessage(const QString& message);
     private:
-        void runChat(const ttrpg::user::User& user);
-
-        ttrpg::network::Client client;
-        ttrpg::ui::client::ClientUI ui;
+        network::Client client;
+        LoginWindow login;
+        //ttrpg::ui::client::ChatWindow chat;
     };
 }

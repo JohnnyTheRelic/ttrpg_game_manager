@@ -4,6 +4,8 @@
 #include <utility>
 #include <iostream>
 
+#include <QDebug>
+
 namespace ttrpg::network {
     Client::Client(MessageCallback onMessage) : socket(io), onMessage(std::move(onMessage)) {
 
@@ -19,18 +21,18 @@ namespace ttrpg::network {
         asio::ip::tcp::endpoint endpoint(asio::ip::make_address("127.0.0.1", ec), 12345);
 
         if(ec) {
-            std::cout << "Failed to create endpoint: " << ec.message() << std::endl;
+            qWarning() << "Failed to create endpoint: " << ec.message();
             return;
         }
 
         socket.connect(endpoint, ec);
 
         if(ec) {
-            std::cout << "Failed to connect to server: " << ec.message() << std::endl;
+            qWarning() << "Failed to connect to server: " << ec.message();
             return;
         }
 
-        std::cout << "Connected to server at " << endpoint.address() << ":" << endpoint.port() << std::endl;
+        qDebug() << "Connected to server at " << endpoint.address().to_string() << ":" << endpoint.port();
     }
 
     void Client::registerUser(const ttrpg::user::User& user) {
@@ -41,14 +43,14 @@ namespace ttrpg::network {
         socket.write_some(asio::buffer(registrationMessage.serialize()), ec);
 
         if(ec) {
-            std::cout << "Failed to send user registration: " << ec.message() << std::endl;
+            qWarning() << "Failed to send user registration: " << ec.message();
             return;
         }
 
-        std::cout << "User registration sent: " << user.getUsername() << std::endl;
+        qDebug() << "User registration sent: " << user.getUsername();
     }
 
-    void Client::sendMessage(const std::string& message) {
+    void Client::sendMessage(const QString& message) {
         asio::error_code ec;
 
         ttrpg::network::Message chatMessage(ttrpg::network::MessageType::ChatMessage, message);
@@ -56,7 +58,7 @@ namespace ttrpg::network {
         socket.write_some(asio::buffer(chatMessage.serialize()), ec);
 
         if(ec) {
-            std::cout << "Failed to send message: " << ec.message() << std::endl;
+            qWarning() << "Failed to send message: " << ec.message();
             return;
         }
     }
@@ -73,7 +75,7 @@ namespace ttrpg::network {
                 // Continue receiving data
                 receiveMessages();
             } else {
-                std::cout << "Error receiving data: " << ec.message() << std::endl;
+                qWarning() << "Error receiving data: " << ec.message();
             }
         });
     }
@@ -84,12 +86,12 @@ namespace ttrpg::network {
         socket.close(ec);
 
         if(ec) {
-            std::cout << "Failed to disconnect: " << ec.message() << std::endl;
+            qWarning() << "Failed to disconnect: " << ec.message();
             return;
         }
 
         io.stop();
 
-        std::cout << "Disconnected from server." << std::endl;
+        qDebug() << "Disconnected from server.";
     }
 }

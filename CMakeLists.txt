@@ -19,6 +19,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(asio)
 
+FetchContent_Declare(
+    protobuf
+    GIT_REPOSITORY https://github.com/protocolbuffers/protobuf.git
+    GIT_TAG v36.2
+)
+
+set(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(protobuf_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(protobuf)
+
 #DEPRICATED
 FetchContent_Declare(
     ftxui
@@ -123,6 +134,7 @@ target_include_directories(ttrpg_client
 target_link_libraries(ttrpg_client
     PRIVATE
         Qt6::Widgets
+        protobuf::libprotobuf
         ftxui::screen
         ftxui::dom
         ftxui::component
@@ -132,6 +144,7 @@ target_link_libraries(ttrpg_client
 target_link_libraries(ttrpg_server
     PRIVATE
         Qt6::Widgets
+        protobuf::libprotobuf
         ftxui::screen
         ftxui::dom
         ftxui::component

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ttrpg;
+
+enum MessageType {
+	MESSAGE_TYPE_UNSPECIFIED = 0;
+	LOGIN = 1;
+}
+
+message Message {
+	MessageType type = 1;
+	string payload = 2;
+}

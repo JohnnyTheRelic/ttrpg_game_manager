@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QString>
+
 #include <functional>
 #include <iostream>
 #include <asio.hpp>
@@ -10,14 +12,14 @@
 namespace ttrpg::network {
     class Client {
     public:
-        using MessageCallback = std::function<void(const std::string&)>;
+        using MessageCallback = std::function<void(const QString&)>;
 
         explicit Client(MessageCallback onMessage);
 
         void run();
         void connect();
         void registerUser(const ttrpg::user::User& user);
-        void sendMessage(const std::string& message);
+        void sendMessage(const QString& message);
         void receiveMessages();
         void disconnect();
     private:

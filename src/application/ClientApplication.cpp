@@ -5,23 +5,19 @@
 #include <functional>
 #include <utility>
 #include <thread>
-#include <iostream>
-#include <string>
 
 namespace ttrpg::application {
-    ClientApplication::ClientApplication() : client([this](const std::string& message) {
-        ui.addChatMessage(message);
-    }), ui([this](const std::string& username) {
-        handleLogin(username);
-    }, [this](const std::string& message) {
-        client.sendMessage(message);
-    }) {}
-
-    void ClientApplication::run() {
-        ui.run();
+    ClientApplication::ClientApplication() : client([this](const QString& message) {
+        emit handleChatMessage(message);
+    }), login() {
+        QObject::connect(&login, &LoginWindow::loginRequest, this, &ClientApplication::handleLogin);
     }
 
-    void ClientApplication::handleLogin(const std::string& username) {
+    void ClientApplication::run() {
+        login.show();
+    }
+
+    void ClientApplication::handleLogin(const QString& username) {
         try {
             ttrpg::user::User user(username);
 
@@ -33,33 +29,12 @@ namespace ttrpg::application {
                 client.run(); // Run the io_context in a separate thread
             });
 
-            ui.showChat();
+            //ui.showChat();
 
             networkThread.detach(); // Wait for the network thread to finish
         } catch (const std::invalid_argument& exception) {
-            std::cerr << "Invalid Username: " << exception.what() << std::endl;
-        }
-    }
-
-    void ClientApplication::runChat(const ttrpg::user::User& user) {
-        std::string message;
-
-        std::cout << "Connected to chat as " << user.getUsername() << ". Type your messages below (type '/quit' to quit):" << std::endl;
-
-        while(true) {
-            std::cout << "> " << std::flush;
-            std::getline(std::cin >> std::ws, message);
-
-            if(message == "/quit") {
-                client.disconnect();
-                break;
-            }
-
-            if(message.empty()) {
-                continue; // Skip sending empty messages
-            }
-
-            client.sendMessage(message);
+            qWarning() << "Invalid Username: " << exception.what();
+            login.show();
         }
     }
 }
