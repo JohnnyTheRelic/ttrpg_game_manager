@@ -9,9 +9,9 @@
 namespace ttrpg::chat {
     class ChatRoom {
     public:
-        void addConnection(std::shared_ptr<ttrpg::network::Connection> connection);
+        void addConnection(const std::shared_ptr<ttrpg::network::Connection> connection);
 
-        void removeConnection(std::shared_ptr<ttrpg::network::Connection> connection);
+        void removeConnection(const std::shared_ptr<ttrpg::network::Connection> connection);
 
         void broadcastMessage(const std::string& message);
     private:

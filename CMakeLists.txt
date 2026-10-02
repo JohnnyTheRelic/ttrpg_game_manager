@@ -19,42 +19,137 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(asio)
 
+# ---------------------------------------------------------------------------
+# Protobuf runtime
+# ---------------------------------------------------------------------------
+
+set(PROTOBUF_VERSION "36.0")
+
+# Match this project's C++ standard.
+set(ABSL_PROPAGATE_CXX_STD ON CACHE BOOL "" FORCE)
+
+# Only build the Protobuf runtime library.
+set(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(protobuf_BUILD_CONFORMANCE OFF CACHE BOOL "" FORCE)
+set(protobuf_BUILD_PROTOC_BINARIES OFF CACHE BOOL "" FORCE)
+set(protobuf_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+
 FetchContent_Declare(
-    protobuf
-    GIT_REPOSITORY https://github.com/protocolbuffers/protobuf.git
-    GIT_TAG v36.2
+protobuf
+URL
+"https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-${PROTOBUF_VERSION}.tar.gz"
+DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
 FetchContent_MakeAvailable(protobuf)
 
-set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+if(NOT TARGET protobuf::libprotobuf)
+message(FATAL_ERROR
+"FetchContent did not create protobuf::libprotobuf"
+)
+endif()
 
-set(PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/proto/ttrpg.proto)")
+# ---------------------------------------------------------------------------
+# Official precompiled protoc
+# ---------------------------------------------------------------------------
+
+if(WIN32)
+FetchContent_Declare(
+protoc_binary
+URL
+"https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-win64.zip"
+DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+
+FetchContent_GetProperties(protoc_binary)
+
+if(NOT protoc_binary_POPULATED)
+FetchContent_Populate(protoc_binary)
+endif()
+
+set(
+PROTOC_EXECUTABLE
+"${protoc_binary_SOURCE_DIR}/bin/protoc.exe"
+)
+else()
+message(FATAL_ERROR
+"This configuration currently defines the protoc binary only for Windows."
+)
+endif()
+
+if(NOT EXISTS "${PROTOC_EXECUTABLE}")
+message(FATAL_ERROR
+"protoc was not found at: ${PROTOC_EXECUTABLE}"
+)
+endif()
+
+message(STATUS "Using protoc: ${PROTOC_EXECUTABLE}")
+
+# ---------------------------------------------------------------------------
+# Generate ttrpg.pb.cc and ttrpg.pb.h
+# ---------------------------------------------------------------------------
+
+set(
+PROTO_FILE
+"${CMAKE_CURRENT_SOURCE_DIR}/proto/ttrpg.proto"
+)
+
+set(
+PROTO_GENERATED_DIR
+"${CMAKE_CURRENT_BINARY_DIR}/generated"
+)
+
+set(
+PROTO_GENERATED_SOURCE
+"${PROTO_GENERATED_DIR}/ttrpg.pb.cc"
+)
+
+set(
+PROTO_GENERATED_HEADER
+"${PROTO_GENERATED_DIR}/ttrpg.pb.h"
+)
+
+file(MAKE_DIRECTORY "${PROTO_GENERATED_DIR}")
 
 add_custom_command(
-    OUTPUT
-        "${PROTO_BINARY_DIR}/ttrpg.pb.cc"
-        "${PROTO_BINARY_DIR}/ttrpg.pb.h"
-    COMMAND protobuf::protoc
-        --proto_path="${CMAKE_CURRENT_SOURCE_DIR}/proto"
-        --cpp_out="${PROTO_BINARY_DIR}"
-        "${CMAKE_CURRENT_SOURCE_DIR}/proto/ttrpg.proto"
-    DEPENDS
-        ${PROTO_FILES}
-        protobuf::protoc
-    COMMENT "Generating protobuf sources"
+OUTPUT
+"${PROTO_GENERATED_SOURCE}"
+"${PROTO_GENERATED_HEADER}"
+
+COMMAND
+"${PROTOC_EXECUTABLE}"
+"--proto_path=${CMAKE_CURRENT_SOURCE_DIR}/proto"
+"--cpp_out=${PROTO_GENERATED_DIR}"
+"${PROTO_FILE}"
+
+DEPENDS
+"${PROTO_FILE}"
+"${PROTOC_EXECUTABLE}"
+
+COMMENT
+"Generating C++ sources from proto/ttrpg.proto"
+
+VERBATIM
 )
 
-add_library(ttrpg_proto OBJECT "${PROTO_BINARY_DIR}/ttrpg.pb.cc")
-
-target_include_directories(ttrpg_proto
-    PUBLIC
-        "${PROTO_BINARY_DIR}"
+add_library(
+ttrpg_proto
+STATIC
+"${PROTO_GENERATED_SOURCE}"
+"${PROTO_GENERATED_HEADER}"
 )
 
-target_link_libraries(ttrpg_proto
-    PUBLIC
-        protobuf::libprotobuf
+target_include_directories(
+ttrpg_proto
+PUBLIC
+"$<BUILD_INTERFACE:${PROTO_GENERATED_DIR}>"
+)
+
+target_link_libraries(
+ttrpg_proto
+PUBLIC
+protobuf::libprotobuf
 )
 
 #DEPRICATED
@@ -107,6 +202,7 @@ add_executable(ttrpg_server
     include/ttrpg/user/User.hpp
     include/ttrpg/util/Logger.hpp
     include/ttrpg/util/Time.hpp
+    include/ttrpg/util/String.hpp src/util/String.cpp
 )
 
 add_executable(ttrpg_client
@@ -138,6 +234,7 @@ add_executable(ttrpg_client
     include/ttrpg/ui/client/client_window.hpp
     ui/client/LoginWindow.ui
     include/ttrpg/ui/client/LoginWindow.hpp src/ui/client/LoginWindow.cpp
+    include/ttrpg/util/String.hpp src/util/String.cpp
 )
 
 if (WIN32)

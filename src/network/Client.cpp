@@ -2,7 +2,6 @@
 #include <ttrpg/network/Message.hpp>
 
 #include <utility>
-#include <iostream>
 
 #include <QDebug>
 
@@ -66,10 +65,17 @@ namespace ttrpg::network {
     void Client::receiveMessages() {
         socket.async_read_some(asio::buffer(buffer), [this](const asio::error_code ec, std::size_t bytes_received) {
             if (!ec) {
-                std::string message(buffer.data(), bytes_received);
+                std::string proto(buffer.data(), bytes_received);
                 
-                if(onMessage) {
-                    onMessage(message);
+                try {
+                    const Message message = Message::deserialize(proto);
+
+                    if(onMessage) {
+                        onMessage(message.getContent());
+                    }
+                }
+                catch (const std::exception& exception) {
+                    qWarning() << "Rejected invalid network message: " << exception.what();
                 }
                 
                 // Continue receiving data

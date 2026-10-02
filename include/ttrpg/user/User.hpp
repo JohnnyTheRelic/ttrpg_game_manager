@@ -7,7 +7,7 @@ namespace ttrpg::user {
     public:
         explicit User(const QString& username);
 
-        const QString& getUsername() const;
+        [[nodiscard]] const QString& getUsername() const noexcept;
 
     private:
         QString username;

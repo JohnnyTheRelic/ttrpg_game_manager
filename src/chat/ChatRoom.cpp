@@ -1,4 +1,5 @@
 #include <ttrpg/chat/ChatRoom.hpp>
+#include <ttrpg/network/Message.hpp>
 
 namespace ttrpg::chat {
     void ChatRoom::addConnection(std::shared_ptr<ttrpg::network::Connection> connection) {
@@ -12,10 +13,10 @@ namespace ttrpg::chat {
         }
     }
 
-    void ChatRoom::broadcastMessage(const std::string& message) {
+    void ChatRoom::broadcastMessage(const ttrpg::network::Message& message) {
         for (const auto& connection : connections) {
             asio::error_code ec;
-            connection->getSocket().write_some(asio::buffer(message), ec);
+            connection->send(message);
 
             if(ec) {
                 std::cout << "Failed to send message to a client: " << ec.message() << std::endl;

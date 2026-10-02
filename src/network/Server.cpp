@@ -2,6 +2,7 @@
 #include <ttrpg/network/Message.hpp>
 #include <ttrpg/network/Server.hpp>
 #include <ttrpg/util/Time.hpp>
+#include <ttrpg/util/String.hpp>
 
 #include <algorithm>
 #include <iostream>
@@ -48,9 +49,12 @@ namespace ttrpg::network {
     }
 
     void Server::removeConnection(std::shared_ptr<Connection> connection) {
-        chatRoom.removeConnection(connection);
-
-        logger.info("User " + connection->getUser().getUsername() + " disconnected.");
+        if(connection->hasUser()) {
+            logger.info("User" + ttrpg::util::toUtf8(connection->getUser().getUsername()) + " disconnected.");
+        }
+        else {
+            logger.info("Unregistered user disconnected.");
+        }
     }
 
     void Server::handleMessage(std::shared_ptr<Connection> connection, const ttrpg::network::Message& message) {
@@ -59,8 +63,10 @@ namespace ttrpg::network {
                 ttrpg::user::User user(message.getContent());
                 connection->registerUser(user);
 
-                logger.info("User registered: " + user.getUsername());
-                chatRoom.broadcastMessage("User " + user.getUsername() + " has joined the chat.");
+                const std::string userCode = ttrpg::util::toUtf8(user.getUsername());
+
+                logger.info("User registered: " + userCode);
+                chatRoom.broadcastMessage("User " + userCode + " has joined the chat.");
                 break;}
             case ttrpg::network::MessageType::ChatMessage: {
                 if(!connection->hasUser()) {
@@ -68,10 +74,11 @@ namespace ttrpg::network {
                     return;
                 }
 
-                std::string formattedMessage = connection->getUser().getUsername() + ": " + message.getContent();
+                const std::string username = ttrpg::util::toUtf8(connection->getUser().getUsername());
+                const std::string content = ttrpg::util::toUtf8(message.getContent());
 
-                logger.chat(formattedMessage);
-                chatRoom.broadcastMessage(formattedMessage);
+                logger.chat(username + ": " + content);
+                chatRoom.broadcastMessage(username + ": " + content);
                 break; }
             default:
                 logger.error("Unknown message type received.");
